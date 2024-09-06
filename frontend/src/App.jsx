@@ -4,6 +4,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import BlogCategoryPage from "./pages/Dashboard/BlogCategoryPage.jsx";
 import ClientPage from "./pages/Dashboard/ClientPage.jsx";
 import DashboardPage from "./pages/Dashboard/DashboardPage.jsx";
+import PortfolioCategoryPage from "./pages/Dashboard/PortfolioCategoryPage.jsx";
+import PortfolioPage from "./pages/Dashboard/PortfolioPage.jsx";
 import EmailVerificationPage from "./pages/EmailVerificationPage.jsx";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
@@ -64,6 +66,22 @@ const App = () => {
           element={
             <ProtectedRoute>
               <ClientPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/portfolio-category"
+          element={
+            <ProtectedRoute>
+              <PortfolioCategoryPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/portfolio"
+          element={
+            <ProtectedRoute>
+              <PortfolioPage />
             </ProtectedRoute>
           }
         />

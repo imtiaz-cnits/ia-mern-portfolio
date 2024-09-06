@@ -5,19 +5,19 @@ import toast from "react-hot-toast";
 import DashboardInput from "../Input/DashboardInput";
 import CategoryStore from "./../../store/CategoryStore";
 
-const CategoryForm = () => {
+const PortfolioCategoryForm = () => {
   const [category, setCategory] = useState("");
 
-  const { createBlogCategory, isLoading, error } = CategoryStore();
+  const { createPortfolioCategory, isLoading, error } = CategoryStore();
 
   const handleBlogCategory = async (e) => {
     e.preventDefault();
     try {
-      await createBlogCategory(category);
-      toast.success("Blog Category Create Successful");
+      await createPortfolioCategory(category);
+      toast.success("Portfolio Category Create Successful");
       setCategory("");
     } catch (error) {
-      toast.error("Blog Category Create Failed!");
+      toast.error("Portfolio Category Create Failed!");
     }
   };
 
@@ -28,7 +28,7 @@ const CategoryForm = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="contact-form">
-        <h1>Add Blog Category</h1>
+        <h1>Add Portfolio Category</h1>
         <form onSubmit={handleBlogCategory}>
           <DashboardInput
             label="Category Name:"
@@ -56,4 +56,4 @@ const CategoryForm = () => {
   );
 };
 
-export default CategoryForm;
+export default PortfolioCategoryForm;

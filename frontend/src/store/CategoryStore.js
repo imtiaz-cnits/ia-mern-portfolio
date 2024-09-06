@@ -7,8 +7,19 @@ axios.defaults.withCredentials = true;
 const CategoryStore = create((set) => ({
   error: null,
   isLoading: false,
-  category: null,
+  categoryList: null,
   message: null,
+  createPortfolioCategory: async (category_name) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axios.post(`${API_URL}/PortfolioCategoryCreate`, {
+        category_name,
+      });
+      set({ message: response.data.message, isLoading: false, error: null });
+    } catch (error) {
+      set({ isLoading: false, error: error });
+    }
+  },
   createBlogCategory: async (category_name) => {
     set({ isLoading: true, error: null });
     try {
@@ -18,6 +29,14 @@ const CategoryStore = create((set) => ({
       set({ message: response.data.message, isLoading: false, error: null });
     } catch (error) {
       set({ isLoading: false, error: error });
+    }
+  },
+  portfolioCategoryRequest: async () => {
+    try {
+      const response = await axios.get(`${API_URL}/PortfolioCategoryList`);
+      set({ categoryList: response.data["data"], error: null });
+    } catch (error) {
+      set({ error: error });
     }
   },
 }));

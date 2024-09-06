@@ -6,9 +6,9 @@ const DashboardSidebar = () => {
     <>
       <div className="sidebar">
         <div className="logo-box">
-          <a href="#" className="logo">
+          <Link to="/dashboard" className="logo">
             <img src={Logo} alt="Logo" />
-          </a>
+          </Link>
         </div>
         <div className="sidebar-item">
           <ul>

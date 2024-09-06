@@ -34,7 +34,7 @@ const ClientForm = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="contact-form">
-        <h1>Create Client</h1>
+        <h1>Add Client</h1>
         <form onSubmit={handleClient}>
           <DashboardInput
             label="Client Name:"
