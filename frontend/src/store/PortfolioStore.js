@@ -34,6 +34,17 @@ const PortfolioStore = create((set) => ({
       set({ isLoading: false, error: error });
     }
   },
+  portfolioListRequest: async (latest) => {
+    try {
+      const response = await axios.get(`${API_URL}/PortfolioList`, {
+        params: { latest }
+      });
+        set({ portfolioList: response.data["data"], error: null });
+    } catch (error) {
+      set({ error: error });
+      console.log(error);
+    }
+  },
 }));
 
 export default PortfolioStore;

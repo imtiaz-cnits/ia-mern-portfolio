@@ -15,7 +15,7 @@ exports.PortfolioCreate = async (req, res) => {
 }
 
 exports.PortfolioList = async (req, res) => {
-    const result = await PortfolioListService();
+    const result = await PortfolioListService(req);
     return res.status(200).json(result);
 }
 
@@ -39,7 +39,7 @@ exports.PortfolioDelete = async (req, res) => {
     return res.status(200).json(result);
 }
 
-// Portfolio Category
+// PortfolioPage Category
 
 exports.PortfolioCategoryCreate = async (req, res) => {
     const result = await PortfolioCategoryCreateService(req);

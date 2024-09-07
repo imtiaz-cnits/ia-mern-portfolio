@@ -39,7 +39,7 @@ const PortfolioForm = () => {
         client,
         description
       );
-      toast.success("Portfolio Create Successful");
+      toast.success("PortfolioPage Create Successful");
       setTitle("");
       setSubTitle("");
       setPortfolioImg1("");
@@ -48,7 +48,7 @@ const PortfolioForm = () => {
       setClient("");
       setDescription("");
     } catch (error) {
-      toast.error("Portfolio Create Failed!");
+      toast.error("PortfolioPage Create Failed!");
     }
   };
 
@@ -59,36 +59,36 @@ const PortfolioForm = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="contact-form">
-        <h1>Add Portfolio</h1>
+        <h1>Add PortfolioPage</h1>
         <form onSubmit={handlePortfolio}>
           <DashboardInput
-            label="Portfolio Title:"
+            label="PortfolioPage Title:"
             type="text"
-            placeholder="Portfolio Title"
+            placeholder="PortfolioPage Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
           />
           <DashboardInput
-            label="Portfolio Sub Title:"
+            label="PortfolioPage Sub Title:"
             type="text"
-            placeholder="Portfolio Sub Title"
+            placeholder="PortfolioPage Sub Title"
             value={subTitle}
             onChange={(e) => setSubTitle(e.target.value)}
             required
           />
           <DashboardInput
-            label="Portfolio Image 1:"
+            label="PortfolioPage Image 1:"
             type="text"
-            placeholder="Portfolio Image 2"
+            placeholder="PortfolioPage Image 2"
             value={portfolioImg1}
             onChange={(e) => setPortfolioImg1(e.target.value)}
             required
           />
           <DashboardInput
-            label="Portfolio Image 2:"
+            label="PortfolioPage Image 2:"
             type="text"
-            placeholder="Portfolio Image 2"
+            placeholder="PortfolioPage Image 2"
             value={portfolioImg2}
             onChange={(e) => setPortfolioImg2(e.target.value)}
             required
@@ -178,6 +178,8 @@ const PortfolioForm = () => {
               </div>
             </label>
           </div> */}
+
+          {error && <p className="text-red-500 font-semibold mt-2">{error}</p>}
 
           <div className="field">
             <div className="control text-center mt-4">

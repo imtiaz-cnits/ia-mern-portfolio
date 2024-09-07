@@ -20,6 +20,14 @@ const CategoryStore = create((set) => ({
       set({ isLoading: false, error: error });
     }
   },
+  portfolioCategoryRequest: async () => {
+    try {
+      const response = await axios.get(`${API_URL}/PortfolioCategoryList`);
+      set({ categoryList: response.data["data"], error: null });
+    } catch (error) {
+      set({ error: error });
+    }
+  },
   createBlogCategory: async (category_name) => {
     set({ isLoading: true, error: null });
     try {
@@ -31,9 +39,9 @@ const CategoryStore = create((set) => ({
       set({ isLoading: false, error: error });
     }
   },
-  portfolioCategoryRequest: async () => {
+  blogCategoryRequest: async () => {
     try {
-      const response = await axios.get(`${API_URL}/PortfolioCategoryList`);
+      const response = await axios.get(`${API_URL}/BlogCategoryList`);
       set({ categoryList: response.data["data"], error: null });
     } catch (error) {
       set({ error: error });

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import { Navigate, Route, Routes } from "react-router-dom";
-import BlogCategoryPage from "./pages/Dashboard/BlogCategoryPage.jsx";
-import ClientPage from "./pages/Dashboard/ClientPage.jsx";
+import BlogCategoryPage from "./pages/Dashboard/BlogCategoryCreatePage.jsx";
+import ClientCreatePage from "./pages/Dashboard/ClientCreatePage.jsx";
 import DashboardPage from "./pages/Dashboard/DashboardPage.jsx";
-import PortfolioCategoryPage from "./pages/Dashboard/PortfolioCategoryPage.jsx";
-import PortfolioPage from "./pages/Dashboard/PortfolioPage.jsx";
+import PortfolioCategoryCreatePage from "./pages/Dashboard/PortfolioCategoryCreatePage.jsx";
+import PortfolioCreatePage from "./pages/Dashboard/PortfolioCreatePage.jsx";
 import EmailVerificationPage from "./pages/EmailVerificationPage.jsx";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
@@ -14,6 +14,13 @@ import ResetPasswordPage from "./pages/ResetPasswordPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 import LoadingSpinner from "./skeleton/LoadingSpinner.jsx";
 import { useAuthStore } from "./store/authStore";
+import BlogCreatePage from "./pages/Dashboard/BlogCreatePage.jsx";
+import PortfolioPage from "./pages/PortfolioPage.jsx";
+import PortfolioDetailsPage from "./pages/PortfolioDetailsPage.jsx";
+import AboutPage from "./pages/AboutPage.jsx";
+import BlogPage from "./pages/BlogPage.jsx";
+import BlogDetailsPage from "./pages/BlogDetailsPage.jsx";
+import ContactPage from "./pages/ContactPage.jsx";
 
 // protect routes that require authentication
 const ProtectedRoute = ({ children }) => {
@@ -42,7 +49,9 @@ const RedirectAuthenticatedUser = ({ children }) => {
 const App = () => {
   const { checkAuth, isCheckingAuth } = useAuthStore();
   useEffect(() => {
-    checkAuth();
+      (async () => {
+          await checkAuth();
+      })()
   }, [checkAuth]);
 
   if (isCheckingAuth) return <LoadingSpinner />;
@@ -50,7 +59,13 @@ const App = () => {
     <>
       <Routes>
         {/* Client Routes */}
-        <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/portfolio-details/:id" element={<PortfolioDetailsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog-details/:id" element={<BlogDetailsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
 
         {/* Dashboard Routes */}
         <Route
@@ -62,37 +77,45 @@ const App = () => {
           }
         />
         <Route
-          path="/client"
+          path="/dashboard-client"
           element={
             <ProtectedRoute>
-              <ClientPage />
+              <ClientCreatePage />
             </ProtectedRoute>
           }
         />
         <Route
-          path="/portfolio-category"
+          path="/dashboard-portfolio-category"
           element={
             <ProtectedRoute>
-              <PortfolioCategoryPage />
+              <PortfolioCategoryCreatePage />
             </ProtectedRoute>
           }
         />
         <Route
-          path="/portfolio"
+          path="/dashboard-portfolio"
           element={
             <ProtectedRoute>
-              <PortfolioPage />
+              <PortfolioCreatePage />
             </ProtectedRoute>
           }
         />
         <Route
-          path="/blog-category"
+          path="/dashboard-blog-category"
           element={
             <ProtectedRoute>
               <BlogCategoryPage />
             </ProtectedRoute>
           }
         />
+          <Route
+              path="/dashboard-blog"
+              element={
+                  <ProtectedRoute>
+                      <BlogCreatePage />
+                  </ProtectedRoute>
+              }
+          />
 
         {/* User Routes */}
         <Route

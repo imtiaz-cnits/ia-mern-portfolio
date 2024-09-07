@@ -1,9 +1,9 @@
-import React from 'react';
-import PortfolioImg1 from "../../assets/images/portfolio_img_1.png";
-import PortfolioImg2 from "../../assets/images/portfolio_img_2.png";
-import PortfolioImg3 from "../../assets/images/portfolio_img_3.png";
+import PortfolioStore from "../../store/PortfolioStore.js";
+import PortfolioSkeleton from "../../skeleton/PortfolioSkeleton.jsx";
+import {Link} from "react-router-dom";
 
 const HomePortfolio = () => {
+    const {portfolioList} = PortfolioStore();
     return (
         <>
             <section id="home_portfolio">
@@ -23,39 +23,27 @@ const HomePortfolio = () => {
                     </div>
 
                     <div className="home_portfolio_wrapper">
-                        <div className="home_portfolio_item">
-                            <div className="home_portfolio_item_wrap">
-                                <img src={PortfolioImg1} alt=""/>
-                                <div className="home_portfolio_item_overlay">
-                                    <div className="home_portfolio_info">
-                                        <span>Design</span>
-                                        <h2>SOFA</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="home_portfolio_item">
-                            <div className="home_portfolio_item_wrap">
-                                <img src={PortfolioImg2} alt=""/>
-                                <div className="home_portfolio_item_overlay">
-                                    <div className="home_portfolio_info">
-                                        <span>Branding</span>
-                                        <h2>KeyBoard</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="home_portfolio_item">
-                            <div className="home_portfolio_item_wrap">
-                                <img src={PortfolioImg3} alt=""/>
-                                <div className="home_portfolio_item_overlay">
-                                    <div className="home_portfolio_info">
-                                        <span>Illustration</span>
-                                        <h2>Work Media</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                        {
+                            portfolioList === null ? (<PortfolioSkeleton/>) : (
+                                portfolioList?.map((item,i) => {
+                                    return (
+                                        <Link to={`/portfolio-details/${item["_id"]}`} key={i} className="home_portfolio_item">
+                                            <div className="home_portfolio_item_wrap">
+                                                <img src={item["img1"]} alt=""/>
+                                                <div className="home_portfolio_item_overlay">
+                                                    <div className="home_portfolio_info">
+                                                        <span>{item["sub_title"]}</span>
+                                                        <h2>{item["title"]}</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    );
+                                })
+                            )
+                        }
+
                     </div>
                 </div>
             </section>

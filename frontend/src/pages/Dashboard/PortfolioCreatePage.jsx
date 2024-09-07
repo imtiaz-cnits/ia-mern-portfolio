@@ -2,7 +2,7 @@ import React from "react";
 import PortfolioForm from "../../components/Dashboard/PortfolioForm";
 import DashboardLayout from "../../components/MasterLayout/DashboardLayout";
 
-const PortfolioPage = () => {
+const PortfolioCreatePage = () => {
   return (
     <DashboardLayout>
       <PortfolioForm />
@@ -10,4 +10,4 @@ const PortfolioPage = () => {
   );
 };
 
-export default PortfolioPage;
+export default PortfolioCreatePage;

@@ -98,7 +98,7 @@ body {
   left: 0;
   top: 0;
   right: 0;
-  box-shadow: 0 0 8px 8px rgba(239, 109, 88, 0.1);
+  box-shadow: 0 0 8px 8px rgba(239, 109, 88, 0.05);
   background: var(--secondary-color);
   animation: moveToBottom 0.8s 1;
   -webkit-animation: moveToBottom 0.8s 1;
@@ -144,6 +144,7 @@ body {
   -o-transition: 0.4s;
 }
 
+.nav_menu .nav_items .nav_link.active,
 .nav_menu .nav_items .nav_link:hover {
   color: var(--primary-color);
 }
@@ -793,6 +794,7 @@ body {
 .home_portfolio_item_wrap img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   transition: 0.4s;
   -webkit-transition: 0.4s;
   -moz-transition: 0.4s;
@@ -1679,7 +1681,7 @@ body {
 }
 
 .blog_item {
-  margin-top: 50px;
+  margin-top: 50px !important;
   cursor: pointer;
 }
 
@@ -1691,6 +1693,7 @@ body {
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
   -o-border-radius: 6px;
+  overflow: hidden;
 }
 
 .blog_img img {
@@ -2186,10 +2189,10 @@ body {
 /* Founder End */
 
 /* ====================
-  === Portfolio Page ===
+  === PortfolioPage Page ===
   ==================== */
 
-/* Portfolio Hero Start */
+/* PortfolioPage Hero Start */
 
 #portfolio_hero {
   padding: 80px 0;
@@ -2221,9 +2224,9 @@ body {
   }
 }
 
-/* Portfolio Hero End */
+/* PortfolioPage Hero End */
 
-/* Portfolio Start */
+/* PortfolioPage Start */
 
 #portfolio {
   padding-top: 100px;
@@ -2396,7 +2399,7 @@ body {
   }
 }
 
-/* Portfolio End */
+/* PortfolioPage End */
 
 /* Project Help Start */
 
@@ -2475,7 +2478,7 @@ body {
 /* Project Help End */
 
 /* ============================
-  === Portfolio Single Page ===
+  === PortfolioPage Single Page ===
   ============================ */
 
 /* Project Details Start */

@@ -1,7 +1,7 @@
 import PortfolioCategoryForm from "./../../components/Dashboard/PortfolioCategoryForm";
 import DashboardLayout from "./../../components/MasterLayout/DashboardLayout";
 
-const PortfolioCategoryPage = () => {
+const PortfolioCategoryCreatePage = () => {
   return (
     <DashboardLayout>
       <PortfolioCategoryForm />
@@ -9,4 +9,4 @@ const PortfolioCategoryPage = () => {
   );
 };
 
-export default PortfolioCategoryPage;
+export default PortfolioCategoryCreatePage;

@@ -14,10 +14,10 @@ const PortfolioCategoryForm = () => {
     e.preventDefault();
     try {
       await createPortfolioCategory(category);
-      toast.success("Portfolio Category Create Successful");
+      toast.success("PortfolioPage Category Create Successful");
       setCategory("");
     } catch (error) {
-      toast.error("Portfolio Category Create Failed!");
+      toast.error("PortfolioPage Category Create Failed!");
     }
   };
 

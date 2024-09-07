@@ -16,19 +16,19 @@ const DashboardSidebar = () => {
               <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
-              <Link to="/client">Client</Link>
+              <Link to="/dashboard-client">Client</Link>
             </li>
             <li>
-              <Link to="/portfolio-category">Portfolio Category</Link>
+              <Link to="/dashboard-portfolio-category">Portfolio Category</Link>
             </li>
             <li>
-              <Link to="/portfolio">Portfolio</Link>
+              <Link to="/dashboard-portfolio">Portfolio</Link>
             </li>
             <li>
-              <Link to="/blog-category">Blog Category</Link>
+              <Link to="/dashboard-blog-category">Blog Category</Link>
             </li>
             <li>
-              <Link to="/blog">Blog</Link>
+              <Link to="/dashboard-blog">Blog</Link>
             </li>
           </ul>
         </div>

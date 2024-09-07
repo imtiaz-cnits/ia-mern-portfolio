@@ -7,7 +7,7 @@ const PortfolioCreateService = async (req, res) => {
   try {
     const reqBody = req.body;
     await PortfolioModel.create(reqBody);
-    return { status: "success", message: "Portfolio Created Successful" };
+    return { status: "success", message: "PortfolioPage Created Successful" };
   } catch (e) {
     return { status: "fail", message: "Something Went Wrong!" };
   }
@@ -15,6 +15,7 @@ const PortfolioCreateService = async (req, res) => {
 
 const PortfolioListService = async (req, res) => {
   try {
+    const { latest } = req.query;
     const JoinWithCategoryStage = {
       $lookup: {
         from: "portfolio_categories",
@@ -37,16 +38,27 @@ const PortfolioListService = async (req, res) => {
       $project: { portfolioCategoryID: 0, clientID: 0 },
     };
 
-    const data = await PortfolioModel.aggregate([
-      JoinWithCategoryStage,
-      JoinWithClientStage,
-      UnwindCategoryStage,
-      UnwindClientStage,
-      ProjectionStage,
-    ]);
+    let data;
+    if (latest === "true") {
+      data = await PortfolioModel.aggregate([
+        JoinWithCategoryStage,
+        JoinWithClientStage,
+        UnwindCategoryStage,
+        UnwindClientStage,
+        ProjectionStage,
+      ]).sort({ createdAt: -1 }).limit(3);
+    } else {
+      data = await PortfolioModel.aggregate([
+        JoinWithCategoryStage,
+        JoinWithClientStage,
+        UnwindCategoryStage,
+        UnwindClientStage,
+        ProjectionStage,
+      ]).sort({ createdAt: -1 });
+    }
     return { status: "success", data: data };
   } catch (e) {
-    return { status: "fail", message: "Something Went Wrong!" };
+    return { status: "fail", message: "Something Went Wrong!", e: e };
   }
 };
 
@@ -125,7 +137,7 @@ const PortfolioUpdateService = async (req, res) => {
     let portfolio_id = req.params.PortfolioID;
     let reqBody = req.body;
     await PortfolioModel.updateOne({ _id: portfolio_id }, { $set: reqBody });
-    return { status: "success", message: "Portfolio Updated Successful" };
+    return { status: "success", message: "PortfolioPage Updated Successful" };
   } catch (e) {
     return { status: "fail", message: "Something Went Wrong!" };
   }
@@ -135,20 +147,20 @@ const PortfolioDeleteService = async (req, res) => {
   try {
     let portfolio_id = req.params.PortfolioID;
     await PortfolioModel.deleteOne({ _id: portfolio_id });
-    return { status: "success", message: "Portfolio Deleted Successful" };
+    return { status: "success", message: "PortfolioPage Deleted Successful" };
   } catch (e) {
     return { status: "fail", message: "Something Went Wrong!" };
   }
 };
 
-// Portfolio Category
+// PortfolioPage Category
 const PortfolioCategoryCreateService = async (req, res) => {
   try {
     const reqBody = req.body;
     await PortfolioCategoryModel.create(reqBody);
     return {
       status: "success",
-      message: "Portfolio Category Created Successful",
+      message: "PortfolioPage Category Created Successful",
     };
   } catch (e) {
     return { status: "fail", message: "Something Went Wrong!" };
@@ -174,7 +186,7 @@ const PortfolioCategoryUpdateService = async (req, res) => {
     );
     return {
       status: "success",
-      message: "Portfolio Category Updated Successful",
+      message: "PortfolioPage Category Updated Successful",
     };
   } catch (e) {
     return { status: "fail", message: "Something Went Wrong!" };
@@ -187,7 +199,7 @@ const PortfolioCategoryDeleteService = async (req, res) => {
     await PortfolioCategoryModel.deleteOne({ _id: category_id });
     return {
       status: "success",
-      message: "Portfolio Category Deleted Successful",
+      message: "PortfolioPage Category Deleted Successful",
     };
   } catch (e) {
     return { status: "fail", message: "Something Went Wrong!" };

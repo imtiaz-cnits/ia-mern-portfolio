@@ -16,8 +16,8 @@ router.post("/verify-email", UserController.verifyEmail);
 router.post("/forgot-password", UserController.forgotPassword);
 router.post("/reset-password/:token", UserController.resetPassword);
 
-// Portfolio
-router.post("/PortfolioCreate", PortfolioController.PortfolioCreate);
+// PortfolioPage
+router.post("/PortfolioCreate", AuthVerification, PortfolioController.PortfolioCreate);
 router.get("/PortfolioList", PortfolioController.PortfolioList);
 router.get(
   "/PortfolioDetails/:PortfolioID",
@@ -28,62 +28,62 @@ router.get(
   PortfolioController.PortfolioListByCategory
 );
 router.post(
-  "/PortfolioUpdate/:PortfolioID",
+  "/PortfolioUpdate/:PortfolioID", AuthVerification,
   PortfolioController.PortfolioUpdate
 );
 router.post(
-  "/PortfolioDelete/:PortfolioID",
+  "/PortfolioDelete/:PortfolioID", AuthVerification,
   PortfolioController.PortfolioDelete
 );
 
-// Portfolio Category
+// PortfolioPage Category
 router.post(
-  "/PortfolioCategoryCreate",
+  "/PortfolioCategoryCreate", AuthVerification,
   PortfolioController.PortfolioCategoryCreate
 );
 router.get("/PortfolioCategoryList", PortfolioController.PortfolioCategoryList);
 router.post(
-  "/PortfolioCategoryUpdate/:CategoryID",
+  "/PortfolioCategoryUpdate/:CategoryID", AuthVerification,
   PortfolioController.PortfolioCategoryUpdate
 );
 router.post(
-  "/PortfolioCategoryDelete/:CategoryID",
+  "/PortfolioCategoryDelete/:CategoryID", AuthVerification,
   PortfolioController.PortfolioCategoryDelete
 );
 
 // Blog
-router.post("/BlogCreate", BlogController.BlogCreate);
+router.post("/BlogCreate", AuthVerification, BlogController.BlogCreate);
 router.get("/BlogList", BlogController.BlogList);
 router.get("/BlogDetails/:BlogID", BlogController.BlogDetails);
 router.get(
   "/BlogListByCategory/:CategoryID",
   BlogController.BlogListByCategory
 );
-router.post("/BlogUpdate/:BlogID", BlogController.BlogUpdate);
-router.post("/BlogDelete/:BlogID", BlogController.BlogDelete);
+router.post("/BlogUpdate/:BlogID", AuthVerification, BlogController.BlogUpdate);
+router.post("/BlogDelete/:BlogID", AuthVerification, BlogController.BlogDelete);
 
 // Blog Category
-router.post("/BlogCategoryCreate", BlogController.BlogCategoryCreate);
+router.post("/BlogCategoryCreate", AuthVerification, BlogController.BlogCategoryCreate);
 router.get("/BlogCategoryList", BlogController.BlogCategoryList);
 router.post(
-  "/BlogCategoryUpdate/:CategoryID",
+  "/BlogCategoryUpdate/:CategoryID", AuthVerification,
   BlogController.BlogCategoryUpdate
 );
 router.post(
-  "/BlogCategoryDelete/:CategoryID",
+  "/BlogCategoryDelete/:CategoryID", AuthVerification,
   BlogController.BlogCategoryDelete
 );
 
 // Client
-router.post("/ClientCreate", ClientController.ClientCreate);
+router.post("/ClientCreate", AuthVerification, ClientController.ClientCreate);
 router.get("/ClientList", ClientController.ClientList);
-router.post("/ClientUpdate/:CategoryID", ClientController.ClientUpdate);
+router.post("/ClientUpdate/:CategoryID", AuthVerification, ClientController.ClientUpdate);
 router.post("/ClientDelete/:CategoryID", ClientController.ClientDelete);
 
 // Review
-router.post("/ReviewCreate", ReviewController.ReviewCreate);
+router.post("/ReviewCreate", AuthVerification, ReviewController.ReviewCreate);
 router.get("/ReviewList", ReviewController.ReviewList);
-router.post("/ReviewUpdate/:CategoryID", ReviewController.ReviewUpdate);
-router.post("/ReviewDelete/:CategoryID", ReviewController.ReviewDelete);
+router.post("/ReviewUpdate/:CategoryID", AuthVerification, ReviewController.ReviewUpdate);
+router.post("/ReviewDelete/:CategoryID", AuthVerification, ReviewController.ReviewDelete);
 
 module.exports = router;

@@ -1,9 +1,10 @@
-import React from 'react';
-import BlogImg1 from "../../assets/images/blog_img_1.png";
-import BlogImg2 from "../../assets/images/blog_img_2.png";
-import BlogImg3 from "../../assets/images/blog_img_3.png";
+import BlogStore from "../../store/BlogStore.js";
+import {Link} from "react-router-dom";
 
 const HomeBlog = () => {
+    const {blogList} = BlogStore();
+    console.log(blogList);
+
     return (
         <>
             <section id="blog">
@@ -25,39 +26,70 @@ const HomeBlog = () => {
 
                     <div className="blog_wrapper">
                         <div className="row d-flex justify-content-between">
+                            {/*{blogList.length > 0 && (*/}
+                            {/*    <div className="col-md-8">*/}
+                            {/*        <Link to={`/blog-details/${blogList[0]["_id"]}`} className="blog_item blog_single_item">*/}
+                            {/*            <div className="blog_img">*/}
+                            {/*                <img src={blogList[0]["img"]} alt="" />*/}
+                            {/*            </div>*/}
+                            {/*            <div className="blog_info">*/}
+                            {/*                <h4>{blogList[0]["blog_category"]["category_name"]}</h4>*/}
+                            {/*                <h2>{blogList[0]["title"]}</h2>*/}
+                            {/*                <p>{new Date(blogList[0]["createdAt"]).toLocaleDateString()}</p>*/}
+                            {/*            </div>*/}
+                            {/*        </Link>*/}
+                            {/*    </div>*/}
+                            {/*)}*/}
+
+                            {/*<div className="col-md-3">*/}
+                            {/*    {blogList.slice(1).map((item, i) => (*/}
+                            {/*        <Link to={`/blog-details/${item["_id"]}`} key={i} className="blog_item">*/}
+                            {/*            <div className="blog_img">*/}
+                            {/*                <img src={item["img"]} alt="" />*/}
+                            {/*            </div>*/}
+                            {/*            <div className="blog_info">*/}
+                            {/*                <h4>{item["blog_category"]["category_name"]}</h4>*/}
+                            {/*                <h2>{item["title"]}</h2>*/}
+                            {/*                <p>{new Date(item.createdAt).toLocaleDateString()}</p>*/}
+                            {/*            </div>*/}
+                            {/*        </Link>*/}
+                            {/*    ))}*/}
+                            {/*</div>*/}
+
+
                             <div className="col-md-8">
-                                <div className="blog_item blog_single_item">
+                                <Link to={`/blog-details/${blogList[0]["_id"]}`} className="blog_item blog_single_item">
                                     <div className="blog_img">
-                                        <img src={BlogImg1} alt=""/>
+                                        <img src={blogList[0]["img"]} alt=""/>
                                     </div>
                                     <div className="blog_info">
-                                        <h4>Stories</h4>
-                                        <h2>Agency is a business you hire to outsource</h2>
-                                        <p>5 Nov, 2024</p>
+                                        <h4>{blogList[0]["blog_category"]["category_name"]}</h4>
+                                        <h2>{blogList[0]["title"]}</h2>
+                                        <p>{new Date(blogList[0]["createdAt"]).toLocaleDateString()}</p>
                                     </div>
-                                </div>
+                                </Link>
                             </div>
                             <div className="col-md-3">
-                                <div className="blog_item">
+                                <Link to={`/blog-details/${blogList[1]["_id"]}`} className="blog_item">
                                     <div className="blog_img">
-                                        <img src={BlogImg2} alt=""/>
+                                        <img src={blogList[1]["img"]} alt=""/>
                                     </div>
                                     <div className="blog_info">
-                                        <h4>Design</h4>
-                                        <h2>Outsource your digital marketing efforts</h2>
-                                        <p>29 Oct, 2024</p>
+                                        <h4>{blogList[1]["blog_category"]["category_name"]}</h4>
+                                        <h2>{blogList[1]["title"]}</h2>
+                                        <p>{new Date(blogList[1]["createdAt"]).toLocaleDateString()}</p>
                                     </div>
-                                </div>
-                                <div className="blog_item">
+                                </Link>
+                                <Link to={`/blog-details/${blogList[2]["_id"]}`} className="blog_item">
                                     <div className="blog_img">
-                                        <img src={BlogImg3} alt=""/>
+                                        <img src={blogList[2]["img"]} alt=""/>
                                     </div>
                                     <div className="blog_info">
-                                        <h4>Design</h4>
-                                        <h2>Outsource your digital marketing efforts</h2>
-                                        <p>29 Oct, 2024</p>
+                                        <h4>{blogList[2]["blog_category"]["category_name"]}</h4>
+                                        <h2>{blogList[2]["title"]}</h2>
+                                        <p>{new Date(blogList[2]["createdAt"]).toLocaleDateString()}</p>
                                     </div>
-                                </div>
+                                </Link>
                             </div>
                         </div>
                     </div>

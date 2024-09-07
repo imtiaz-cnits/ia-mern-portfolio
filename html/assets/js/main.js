@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// =========== Portfolio Tabs =============
+// =========== PortfolioPage Tabs =============
 
 document.addEventListener("DOMContentLoaded", function () {
   const tabButtons = document.querySelectorAll(".tab_btn");

@@ -1,6 +1,7 @@
 const BlogModel = require("../models/BlogModel");
 const BlogCategoryModel = require("../models/BlogCategoryModel");
 const mongoose = require("mongoose");
+const PortfolioModel = require("../models/PortfolioModel");
 const ObjectId = mongoose.Types.ObjectId;
 
 // Blog Category
@@ -44,12 +45,19 @@ const BlogCategoryDeleteService = async (req, res) => {
   }
 };
 
-// portfolio
+// blog
 const BlogCreateService = async (req, res) => {
   try {
     const reqBody = req.body;
-    await BlogModel.create(reqBody);
-    return { status: "success", message: "Blog Created Successful" };
+    let user_id = new ObjectId(req.userId);
+
+    await BlogModel.create({
+      userID: user_id,
+      title: reqBody.title,
+      des: reqBody.des,
+      blogCategoryID: reqBody.blogCategoryID,
+      img: reqBody.img});
+    return { status: "success", message: "Blog Created Successful"};
   } catch (e) {
     return { status: "fail", message: "Something Went Wrong!" };
   }
@@ -57,6 +65,7 @@ const BlogCreateService = async (req, res) => {
 
 const BlogListService = async (req, res) => {
   try {
+    const { latest } = req.query;
     const JoinWithCategoryStage = {
       $lookup: {
         from: "blog_categories",
@@ -85,13 +94,25 @@ const BlogListService = async (req, res) => {
       },
     };
 
-    const data = await BlogModel.aggregate([
-      JoinWithCategoryStage,
-      JoinWithUserStage,
-      UnwindCategoryStage,
-      UnwindUserStage,
-      ProjectionStage,
-    ]);
+    let data;
+    if (latest === "true") {
+      data = await BlogModel.aggregate([
+        JoinWithCategoryStage,
+        JoinWithUserStage,
+        UnwindCategoryStage,
+        UnwindUserStage,
+        ProjectionStage,
+      ]).sort({ createdAt: -1 }).limit(3);
+    } else {
+      data = await BlogModel.aggregate([
+        JoinWithCategoryStage,
+        JoinWithUserStage,
+        UnwindCategoryStage,
+        UnwindUserStage,
+        ProjectionStage,
+      ]).sort({ createdAt: -1 });
+    }
+
     return { status: "success", data: data };
   } catch (e) {
     return { status: "fail", message: "Something Went Wrong!" };

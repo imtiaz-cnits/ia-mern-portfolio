@@ -32,14 +32,14 @@ exports.BlogCategoryDelete = async (req, res) => {
   return res.status(200).json(result);
 };
 
-// portfolio
+// blog
 exports.BlogCreate = async (req, res) => {
   const result = await BlogCreateService(req);
   return res.status(200).json(result);
 };
 
 exports.BlogList = async (req, res) => {
-  const result = await BlogListService();
+  const result = await BlogListService(req);
   return res.status(200).json(result);
 };
 

@@ -1,5 +1,5 @@
-import React from 'react';
 import AppLogo from "../../assets/images/logo.svg";
+import {Link} from "react-router-dom";
 
 const AppNavbar = () => {
     const navToggleBtn = document.querySelector("#nav_toggle_btn");
@@ -37,15 +37,14 @@ const AppNavbar = () => {
 
                         <nav className="nav_menu">
                             <ul className="nav_items">
-                                <li className="nva_item"><a href="#" className="nav_link">Home</a></li>
-                                <li className="nva_item"><a href="#" className="nav_link">About</a></li>
-                                <li className="nva_item"><a href="#" className="nav_link">Services</a></li>
-                                <li className="nva_item"><a href="#" className="nav_link">Products</a></li>
-                                <li className="nva_item"><a href="#" className="nav_link">Contact</a></li>
+                                <li className="nva_item"><Link to="/" className='nav_link'>Home</Link></li>
+                                <li className="nva_item"><Link to="/about" className='nav_link'>About</Link></li>
+                                <li className="nva_item"><Link to="/portfolio" className='nav_link'>Portfolio</Link></li>
+                                <li className="nva_item"><Link to="/blog" className='nav_link'>Blog</Link></li>
                             </ul>
                         </nav>
 
-                        <button type="button" className="nav_btn">Contact</button>
+                        <Link to="/contact" className="nav_btn">Contact</Link>
 
                         <button type="button" className="burger_icon" id="nav_toggle_btn" onClick={menuShow}
                                 onBlur={menuClose}>

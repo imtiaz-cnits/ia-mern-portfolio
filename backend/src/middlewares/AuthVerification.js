@@ -15,6 +15,7 @@ exports.AuthVerification = (req, res, next) => {
                 .json({ success: false, message: "Unauthorized - invalid token" });
 
         req.userId = decoded.userId;
+        res.setHeader('userId', req.userId);
         next();
     } catch (err) {
         console.log("Error in verify token", err);

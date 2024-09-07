@@ -2,7 +2,7 @@ import React from "react";
 import ClientForm from "../../components/Dashboard/ClientForm";
 import DashboardLayout from "../../components/MasterLayout/DashboardLayout";
 
-const ClientPage = () => {
+const ClientCreatePage = () => {
   return (
     <DashboardLayout>
       <ClientForm />
@@ -10,4 +10,4 @@ const ClientPage = () => {
   );
 };
 
-export default ClientPage;
+export default ClientCreatePage;
