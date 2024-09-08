@@ -4,10 +4,11 @@ import { create } from "zustand";
 const API_URL = "http://localhost:3060/api/v1";
 axios.defaults.withCredentials = true;
 
-const PortfolioStore = create((set) => ({
+export const PortfolioStore = create((set) => ({
   error: null,
   isLoading: false,
   portfolioList: null,
+  portfolioDetails: null,
   message: null,
   createPortfolioRequest: async (
     title,
@@ -45,6 +46,14 @@ const PortfolioStore = create((set) => ({
       console.log(error);
     }
   },
+  portfolioDetailsRequest: async (PortfolioID) => {
+    try {
+      const response = await axios.get(`${API_URL}/PortfolioDetails/${PortfolioID}`);
+      set({ portfolioDetails: response.data["data"], error: null });
+    } catch (error) {
+      set({ error: error });
+      console.log(error);
+    }
+  }
 }));
 
-export default PortfolioStore;

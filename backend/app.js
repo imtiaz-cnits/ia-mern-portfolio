@@ -14,11 +14,11 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const mongoose = require("mongoose");
 
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 dotenv.config();
 
 // App Security
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(helmet());
 app.use(mongoSanitize());
 app.use(xss());

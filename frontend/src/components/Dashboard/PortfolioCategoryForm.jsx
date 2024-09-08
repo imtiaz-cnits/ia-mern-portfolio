@@ -3,7 +3,7 @@ import { Loader } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import DashboardInput from "../Input/DashboardInput";
-import CategoryStore from "./../../store/CategoryStore";
+import {CategoryStore} from "./../../store/CategoryStore";
 
 const PortfolioCategoryForm = () => {
   const [category, setCategory] = useState("");

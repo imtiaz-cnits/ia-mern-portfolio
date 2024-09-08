@@ -3,7 +3,7 @@ import DashboardInput from "../Input/DashboardInput.jsx";
 import {Loader} from "lucide-react";
 import {useEffect, useState} from "react";
 import BlogStore from "../../store/BlogStore.js";
-import CategoryStore from "../../store/CategoryStore.js";
+import {CategoryStore} from "../../store/CategoryStore";
 import {toast} from "react-hot-toast";
 
 const BlogForm = () => {

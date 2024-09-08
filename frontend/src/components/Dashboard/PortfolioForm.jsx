@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import CategoryStore from "../../store/CategoryStore";
+import {CategoryStore} from "../../store/CategoryStore";
 import ClientStore from "../../store/ClientStore";
-import PortfolioStore from "../../store/PortfolioStore";
+import {PortfolioStore} from "../../store/PortfolioStore";
 import DashboardInput from "./../Input/DashboardInput";
 
 const PortfolioForm = () => {

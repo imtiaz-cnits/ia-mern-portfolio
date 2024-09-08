@@ -31,9 +31,9 @@ const AppNavbar = () => {
             <header id="navbar">
                 <div className="container">
                     <div className="navbar_wrapper">
-                        <a href="#" className="logo">
+                        <Link to="/" className="logo">
                             <img src={AppLogo} alt=""/>
-                        </a>
+                        </Link>
 
                         <nav className="nav_menu">
                             <ul className="nav_items">

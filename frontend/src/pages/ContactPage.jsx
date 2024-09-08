@@ -1,10 +1,15 @@
 import React from 'react';
 import MasterLayout from "../components/MasterLayout/MasterLayout.jsx";
+import ContactHero from "../components/Contact/ContactHero.jsx";
+import ContactMe from "../components/Contact/ContactMe.jsx";
+import ContactMethod from "../components/Contact/ContactMethod.jsx";
 
 const ContactPage = () => {
     return (
         <MasterLayout>
-            <h1>Contact</h1>
+            <ContactHero />
+            <ContactMe />
+            <ContactMethod />
         </MasterLayout>
     );
 };

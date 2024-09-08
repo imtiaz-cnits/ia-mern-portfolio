@@ -1,5 +1,6 @@
 import React from 'react';
 import AppLogo from "../../assets/images/logo.svg";
+import {Link} from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -18,16 +19,16 @@ const Footer = () => {
 
                                 <ul className="footer_items">
                                     <li className="footer_item">
-                                        <a href="#" className="footer_link">About</a>
+                                        <Link to="/about" className="footer_link">About</Link>
                                     </li>
                                     <li className="footer_item">
-                                        <a href="#" className="footer_link">Services</a>
+                                        <Link to="/" className="footer_link">Portfolio</Link>
                                     </li>
                                     <li className="footer_item">
-                                        <a href="#" className="footer_link">Blog</a>
+                                        <Link to="/blog" className="footer_link">Blog</Link>
                                     </li>
                                     <li className="footer_item">
-                                        <a href="#" className="footer_link">Contact</a>
+                                        <Link to="/contact" className="footer_link">Contact</Link>
                                     </li>
                                 </ul>
                             </div>

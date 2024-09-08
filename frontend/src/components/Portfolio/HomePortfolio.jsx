@@ -1,4 +1,4 @@
-import PortfolioStore from "../../store/PortfolioStore.js";
+import {PortfolioStore} from "../../store/PortfolioStore";
 import PortfolioSkeleton from "../../skeleton/PortfolioSkeleton.jsx";
 import {Link} from "react-router-dom";
 

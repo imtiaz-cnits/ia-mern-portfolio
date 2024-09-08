@@ -1,10 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import MasterLayout from "../components/MasterLayout/MasterLayout.jsx";
+import PortfolioHero from "../components/Portfolio/PortfolioHero.jsx";
+import ProjectHelp from "../components/Feature/ProjectHelp.jsx";
+import Portfolio from "../components/Portfolio/Portfolio.jsx";
+import {PortfolioStore} from "../store/PortfolioStore";
+import {CategoryStore} from "../store/CategoryStore";
 
 const PortfolioPage = () => {
+    const {portfolioListRequest} = PortfolioStore();
+    const {portfolioCategoryRequest} = CategoryStore();
+
+    useEffect(() => {
+        (async () => {
+            await portfolioListRequest();
+            await portfolioCategoryRequest();
+        })();
+    }, []);
+
     return (
         <MasterLayout>
-            <h1>Portfolio</h1>
+            <PortfolioHero />
+            <Portfolio />
+            <ProjectHelp />
         </MasterLayout>
     );
 };
