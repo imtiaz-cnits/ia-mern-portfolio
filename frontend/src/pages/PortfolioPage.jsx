@@ -3,7 +3,7 @@ import MasterLayout from "../components/MasterLayout/MasterLayout.jsx";
 import PortfolioHero from "../components/Portfolio/PortfolioHero.jsx";
 import ProjectHelp from "../components/Feature/ProjectHelp.jsx";
 import Portfolio from "../components/Portfolio/Portfolio.jsx";
-import {PortfolioStore} from "../store/PortfolioStore";
+import PortfolioStore from "../store/PortfolioStore.js";
 import {CategoryStore} from "../store/CategoryStore";
 
 const PortfolioPage = () => {

@@ -1,35 +1,44 @@
 import React from 'react';
+import BlogStore from "../../store/BlogStore.js";
+import PortfolioSkeleton from "../../skeleton/PortfolioSkeleton.jsx";
+import {Link} from "react-router-dom";
+import {formatDate} from "../../utility/date.js";
 
 const BlogLatest = () => {
+    const {blogList} = BlogStore();
+    const LatestBlog = blogList.slice(0, 2);
+
+    if(!LatestBlog) {
+        return (
+            <PortfolioSkeleton/>
+        );
+    }
     return (
         <>
             <div className="latest_blog">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-6">
-                            <div className="blog_item latest_blog">
-                                <div className="blog_img">
-                                    <img src="./assets/images/blog/blog_img_1.png" alt=""/>
-                                </div>
-                                <div className="blog_info">
-                                    <h4>Design</h4>
-                                    <h2>Performance marketing agencies specialize</h2>
-                                    <p>29 Oct, 2024</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="blog_item latest_blog">
-                                <div className="blog_img">
-                                    <img src="./assets/images/blog/blog_img_2.png" alt=""/>
-                                </div>
-                                <div className="blog_info">
-                                    <h4>Design</h4>
-                                    <h2>Outsource your digital marketing efforts</h2>
-                                    <p>29 Oct, 2024</p>
-                                </div>
-                            </div>
-                        </div>
+
+                        {
+                            LatestBlog.map((item, i) => {
+                                return (
+                                    <div key={i} className="col-md-6">
+                                        <div className="blog_item latest_blog">
+                                            <Link to={`/blog-details/${item["_id"]}`}>
+                                                <div className="blog_img">
+                                                    <img src={item["img"]} alt=""/>
+                                                </div>
+                                                <div className="blog_info">
+                                                    <h4>{item["blog_category"]["category_name"]}</h4>
+                                                    <h2>{item["title"]}</h2>
+                                                    <p>{formatDate(item["createdAt"])}</p>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
                 </div>
             </div>

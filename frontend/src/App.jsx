@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-import { Navigate, Route, Routes } from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import BlogCategoryPage from "./pages/Dashboard/BlogCategoryCreatePage.jsx";
 import ClientCreatePage from "./pages/Dashboard/ClientCreatePage.jsx";
 import DashboardPage from "./pages/Dashboard/DashboardPage.jsx";
@@ -57,6 +57,7 @@ const App = () => {
   if (isCheckingAuth) return <LoadingSpinner />;
   return (
     <>
+        <BrowserRouter>
       <Routes>
         {/* Client Routes */}
           <Route path="/" element={<HomePage />} />
@@ -157,6 +158,7 @@ const App = () => {
       </Routes>
 
       <Toaster position="bottom right" />
+        </BrowserRouter>
     </>
   );
 };

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import {CategoryStore} from "../../store/CategoryStore";
 import ClientStore from "../../store/ClientStore";
-import {PortfolioStore} from "../../store/PortfolioStore";
+import PortfolioStore from "../../store/PortfolioStore.js";
 import DashboardInput from "./../Input/DashboardInput";
 
 const PortfolioForm = () => {

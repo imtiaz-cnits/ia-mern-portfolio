@@ -8,6 +8,7 @@ const BlogStore = create((set) => ({
     error: null,
     isLoading: false,
     blogList: null,
+    blogDetails: null,
     message: null,
     createBlogRequest: async (
         title,
@@ -39,6 +40,15 @@ const BlogStore = create((set) => ({
             console.log(error);
         }
     },
+    blogDetailsRequest: async (BlogID) => {
+        try {
+            const response = await axios.get(`${API_URL}/BlogDetails/${BlogID}`);
+            set({ blogDetails: response.data["data"], error: null });
+        } catch (error) {
+            set({ error: error });
+            console.log(error);
+        }
+    }
 }));
 
 export default BlogStore;

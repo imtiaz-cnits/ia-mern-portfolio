@@ -1,10 +1,10 @@
 import axios from "axios";
-import { create } from "zustand";
+import {create} from "zustand";
 
 const API_URL = "http://localhost:3060/api/v1";
 axios.defaults.withCredentials = true;
 
-export const PortfolioStore = create((set) => ({
+const PortfolioStore = create((set) => ({
   error: null,
   isLoading: false,
   portfolioList: null,
@@ -56,4 +56,6 @@ export const PortfolioStore = create((set) => ({
     }
   }
 }));
+
+export default PortfolioStore;
 

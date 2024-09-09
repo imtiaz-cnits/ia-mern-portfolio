@@ -4,23 +4,30 @@ import PortfolioSkeleton from "../../skeleton/PortfolioSkeleton.jsx";
 import {Link} from "react-router-dom";
 import {formatDate} from "../../utility/date.js";
 
-const Blog = () => {
+const BlogRelated = () => {
     const {blogList} = BlogStore();
-    const AllBlog = blogList.slice(2);
 
-    if(!AllBlog) {
+    const RelatedBlog = blogList.slice(0, 3);
+
+    if (!RelatedBlog) {
         return (
             <PortfolioSkeleton/>
         );
     }
     return (
         <>
-            <div className="all_blogs">
+            <section id="related_blog">
                 <div className="container">
-                    <div className="all_blog_wrapper">
+                    <div className="related_blog_wrapper">
                         <div className="row">
+                            <div className="col-sm-12">
+                                <div className="related_blog_head">
+                                    <h2>Related Articles</h2>
+                                </div>
+                            </div>
+
                             {
-                                AllBlog.map((item, i) => {
+                                RelatedBlog.map((item, i) => {
                                     return (
                                         <div key={i} className="col-lg-4 col-md-6">
                                             <div className="blog_item">
@@ -39,20 +46,12 @@ const Blog = () => {
                                     );
                                 })
                             }
-
-                            {AllBlog.length > 6 && (
-                                <div className="col-12">
-                                    <div className="blog_btn_wrap">
-                                        <button type="button" className="blog_btn">Load More</button>
-                                    </div>
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </>
     );
 };
 
-export default Blog;
+export default BlogRelated;

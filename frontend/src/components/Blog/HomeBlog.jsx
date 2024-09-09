@@ -1,6 +1,7 @@
 import BlogStore from "../../store/BlogStore.js";
 import {Link} from "react-router-dom";
 import PortfolioSkeleton from "../../skeleton/PortfolioSkeleton.jsx";
+import {formatDate} from "../../utility/date.js";
 
 const HomeBlog = () => {
     const {blogList} = BlogStore();
@@ -93,7 +94,7 @@ const HomeBlog = () => {
                                                         <div className="blog_info">
                                                             <h4>{item["blog_category"]["category_name"]}</h4>
                                                             <h2>{item["title"]}</h2>
-                                                            <p>{new Date(item.createdAt).toLocaleDateString()}</p>
+                                                            <p>{formatDate(item["createdAt"])}</p>
                                                         </div>
                                                     </div>
                                                 </Link>

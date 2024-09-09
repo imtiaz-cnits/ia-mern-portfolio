@@ -1,7 +1,7 @@
 import React from 'react';
-import {PortfolioStore} from "../../store/PortfolioStore.js";
-import PortfolioSkeleton from "../../skeleton/PortfolioSkeleton.jsx";
+import PortfolioStore from "../../store/PortfolioStore.js";
 import {useNavigate} from "react-router-dom";
+import PortfolioSkeleton from "../../skeleton/PortfolioSkeleton.jsx";
 
 const PortfolioDetails = () => {
     const {portfolioDetails} = PortfolioStore();
@@ -11,6 +11,11 @@ const PortfolioDetails = () => {
         navigate(-1); // equivalent to history.goBack()
     };
 
+    if (!portfolioDetails) {
+        return (
+            <PortfolioSkeleton/>
+        );
+    }
     return (
         <>
             <section id="project_details">
@@ -38,7 +43,7 @@ const PortfolioDetails = () => {
                                     <div className="col-md-6">
                                         <div className="project_details">
                                             <h4>Category</h4>
-                                            <p>{portfolioDetails[0]["portfolio_category"]["category_name"]}</p>
+                                            {/*<p>{portfolioDetails[0]["portfolio_category"]["category_name"]}</p>*/}
                                         </div>
                                     </div>
                                     <div className="col-md-6">

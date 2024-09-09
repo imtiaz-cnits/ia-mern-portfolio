@@ -10,7 +10,7 @@ import Review from "../components/Review/Review.jsx";
 import Client from "../components/Client/Client.jsx";
 import HomeBlog from "../components/Blog/HomeBlog.jsx";
 import HomeContact from "../components/Contact/HomeContact.jsx";
-import {PortfolioStore} from "../store/PortfolioStore";
+import PortfolioStore from "../store/PortfolioStore.js";
 import BlogStore from "../store/BlogStore.js";
 
 const HomePage = () => {

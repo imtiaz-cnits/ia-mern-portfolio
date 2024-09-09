@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {PortfolioStore} from "../../store/PortfolioStore";
+import PortfolioStore from "../../store/PortfolioStore.js";
 import {CategoryStore} from "../../store/CategoryStore";
 import {Link} from "react-router-dom";
 import PortfolioSkeleton from "../../skeleton/PortfolioSkeleton.jsx";
@@ -44,6 +44,11 @@ const Portfolio = () => {
 
     const filteredItems = portfolioList === null ? (console.log("portfolio")) : (activeTab === 'all' ? portfolioList : portfolioList.filter(item => item["portfolio_category"]["category_name"].toLowerCase().replace(/\s+/g, "_") === activeTab));
 
+    if (!portfolioList) {
+        return (
+            <PortfolioSkeleton/>
+        );
+    }
     return (
         <>
             <div id="portfolio">
@@ -85,11 +90,11 @@ const Portfolio = () => {
                                 )}
                             </div>
 
-                            {/*{activeTab === 'all' && portfolioList.length > 6 && (*/}
-                            {/*    <div className="portfolio_btn_wrap">*/}
-                            {/*        <button type="button" className="portfolio_btn">Load More</button>*/}
-                            {/*    </div>*/}
-                            {/*)}*/}
+                            {activeTab === 'all' && portfolioList.length > 6 && (
+                                <div className="portfolio_btn_wrap">
+                                    <button type="button" className="portfolio_btn">Load More</button>
+                                </div>
+                            )}
                         </div>
                     </div>
 
