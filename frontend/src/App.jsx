@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import BlogCategoryPage from "./pages/Dashboard/BlogCategoryCreatePage.jsx";
 import ClientCreatePage from "./pages/Dashboard/ClientCreatePage.jsx";
 import DashboardPage from "./pages/Dashboard/DashboardPage.jsx";
@@ -21,6 +21,7 @@ import AboutPage from "./pages/AboutPage.jsx";
 import BlogPage from "./pages/BlogPage.jsx";
 import BlogDetailsPage from "./pages/BlogDetailsPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
+import { useLocation } from 'react-router-dom';
 
 // protect routes that require authentication
 const ProtectedRoute = ({ children }) => {
@@ -47,17 +48,25 @@ const RedirectAuthenticatedUser = ({ children }) => {
 };
 
 const App = () => {
+    const location = useLocation();
+
   const { checkAuth, isCheckingAuth } = useAuthStore();
   useEffect(() => {
-      (async () => {
+      const handleScrollAndAuthCheck = async () => {
+          window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+          });
+
           await checkAuth();
-      })()
-  }, [checkAuth]);
+      };
+
+      handleScrollAndAuthCheck();
+  }, [checkAuth, location.pathname]);
 
   if (isCheckingAuth) return <LoadingSpinner />;
   return (
     <>
-        <BrowserRouter>
       <Routes>
         {/* Client Routes */}
           <Route path="/" element={<HomePage />} />
@@ -158,7 +167,6 @@ const App = () => {
       </Routes>
 
       <Toaster position="bottom right" />
-        </BrowserRouter>
     </>
   );
 };
